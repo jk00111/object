@@ -28,22 +28,22 @@ public class BaseballGame implements Game {
             System.out.println(judgement.message());
         } while(keepFlag);
 
-        selectRestart(player);
+        selectRestart();
     }
 
-    private void selectRestart(Scanner player) {
+    private void selectRestart() {
         System.out.println("press X to quit, press any to restart");
 
         String replay = player.next();
-        if (!"X".equalsIgnoreCase(replay)){
-            quit(player);
+        if ("X".equalsIgnoreCase(replay)){
+            quit();
             return;
         }
 
         replay();
     }
 
-    private void quit(Scanner player) {
+    private void quit() {
         player.close();
         System.out.println("Game closed");
     }
