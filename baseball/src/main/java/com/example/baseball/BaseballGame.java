@@ -1,19 +1,20 @@
 package com.example.baseball;
 
-import com.example.baseball.validator.BaseballGameReferee;
-import com.example.baseball.validator.Validator;
+import com.example.baseball.judge.Judgement;
+import com.example.baseball.player.BaseballPlayer;
+import com.example.baseball.player.Player;
+import com.example.baseball.referee.BaseballGameReferee;
+import com.example.baseball.referee.Referee;
 import com.example.baseball.vo.BaseballGameAnswer;
-import com.example.baseball.vo.Judgement;
-
-import java.util.Scanner;
 
 public class BaseballGame implements Game {
 
-    private final Scanner player;
-    private Validator referee;
+    private final Player player;
+    private Referee referee;
+    private int reclusiveCount = 0;
 
     public BaseballGame() {
-        this.player = new Scanner(System.in);
+        this.player = new BaseballPlayer();
         this.referee = new BaseballGameReferee();
     }
 
@@ -23,18 +24,22 @@ public class BaseballGame implements Game {
         boolean keepFlag;
 
         do {
-            Judgement judgement = submit(new BaseballGameAnswer(player.next()));
+            Judgement judgement = submit(new BaseballGameAnswer(player.submit()));
             keepFlag = !judgement.isCorrect();
             System.out.println(judgement.message());
         } while(keepFlag);
 
+        if(isEscapeCount()) {
+            quit();
+            return;
+        }
         selectRestart();
     }
 
     private void selectRestart() {
         System.out.println("press X to quit, press any to restart");
 
-        String replay = player.next();
+        String replay = player.submit();
         if ("X".equalsIgnoreCase(replay)){
             quit();
             return;
@@ -43,13 +48,19 @@ public class BaseballGame implements Game {
         replay();
     }
 
+    private boolean isEscapeCount() {
+        final int ESCAPE_COUNT = 10;
+        return this.reclusiveCount == ESCAPE_COUNT;
+    }
+
     private void quit() {
-        player.close();
+        player.logout();
         System.out.println("Game closed");
     }
 
     private void replay() {
         this.referee = new BaseballGameReferee();
+        reclusiveCount++;
         play();
     }
 

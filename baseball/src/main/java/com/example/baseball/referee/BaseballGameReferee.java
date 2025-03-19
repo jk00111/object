@@ -1,11 +1,11 @@
-package com.example.baseball.validator;
+package com.example.baseball.referee;
 
 import com.example.baseball.generator.BaseballGameQuestionGenerator;
 import com.example.baseball.vo.BaseballGameAnswer;
-import com.example.baseball.vo.BaseballJudgement;
-import com.example.baseball.vo.Judgement;
+import com.example.baseball.judge.BaseballJudgement;
+import com.example.baseball.judge.Judgement;
 
-public class BaseballGameReferee implements Validator {
+public class BaseballGameReferee implements Referee {
 
     private final String question;
 

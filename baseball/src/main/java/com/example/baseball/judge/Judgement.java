@@ -1,4 +1,4 @@
-package com.example.baseball.vo;
+package com.example.baseball.judge;
 
 
 public interface Judgement {
