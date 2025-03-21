@@ -1,9 +1,10 @@
 package com.example.baseball.referee;
 
 import com.example.baseball.generator.BaseballGameQuestionGenerator;
+import com.example.baseball.generator.QuestionGenerator;
+import com.example.baseball.judgement.BaseballJudgement;
+import com.example.baseball.judgement.Judgement;
 import com.example.baseball.vo.BaseballGameAnswer;
-import com.example.baseball.judge.BaseballJudgement;
-import com.example.baseball.judge.Judgement;
 
 public class BaseballGameReferee implements Referee {
 
@@ -13,6 +14,11 @@ public class BaseballGameReferee implements Referee {
         BaseballGameQuestionGenerator questionGenerator = new BaseballGameQuestionGenerator();
         this.question = questionGenerator.generate();
     }
+
+    public BaseballGameReferee(QuestionGenerator questionGenerator) {
+        this.question = questionGenerator.generate();
+    }
+
 
     @Override
     public Judgement judge(BaseballGameAnswer answer) {

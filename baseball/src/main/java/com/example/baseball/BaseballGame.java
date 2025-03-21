@@ -1,6 +1,6 @@
 package com.example.baseball;
 
-import com.example.baseball.judge.Judgement;
+import com.example.baseball.judgement.Judgement;
 import com.example.baseball.player.BaseballPlayer;
 import com.example.baseball.player.Player;
 import com.example.baseball.referee.BaseballGameReferee;
@@ -18,6 +18,11 @@ public class BaseballGame implements Game {
         this.referee = new BaseballGameReferee();
     }
 
+    public BaseballGame(Referee referee) {
+        this.player = new BaseballPlayer();
+        this.referee = referee;
+    }
+
     @Override
     public void play() {
         System.out.println("Game start :::");
@@ -29,10 +34,15 @@ public class BaseballGame implements Game {
             System.out.println(judgement.message());
         } while(keepFlag);
 
+        afterPlay();
+    }
+
+    private void afterPlay() {
         if(isEscapeCount()) {
             quit();
             return;
         }
+
         selectRestart();
     }
 

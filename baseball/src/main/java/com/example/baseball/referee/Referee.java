@@ -1,7 +1,7 @@
 package com.example.baseball.referee;
 
 import com.example.baseball.vo.BaseballGameAnswer;
-import com.example.baseball.judge.Judgement;
+import com.example.baseball.judgement.Judgement;
 
 public interface Referee {
 
