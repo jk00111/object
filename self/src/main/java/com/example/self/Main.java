@@ -8,5 +8,7 @@ public class Main {
 
         Parent parent = new Parent();
         System.out.println(parent.stats());
+
+        System.out.println(child.atavism());
     }
 }

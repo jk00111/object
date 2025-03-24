@@ -1,6 +1,6 @@
 package com.example.self;
 
-public class Parent {
+public class Parent extends GrandParent {
 
     public String stats() {
         return "Parent - stats " + getEvaluationMethod();
